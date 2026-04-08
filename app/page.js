@@ -235,7 +235,7 @@ export default function HomePage() {
                 <div style={{ position:'relative', height:'240px', borderRadius:'4px', overflow:'hidden' }}>
                   <Image src={s.img} alt={s.title} fill style={{ objectFit:'cover', transition:'transform .4s' }} sizes="420px" loading="lazy" />
                 </div>
-                <span style={{ fontSize:'.58rem', letterSpacing:'.2em', color:'rgba(255,255,255,.22)', textAlign:'left' }}>{s.sub}</span>
+                <span style={{ fontSize:'.58rem', letterSpacing:'.2em', color:'rgba(255,255,255,.7)', textAlign:'left' }}>{s.sub}</span>
                 <span style={{ fontSize:'1.1rem', color:'rgba(255,255,255,.2)' }}>←</span>
               </div>
             </Link>
