@@ -14,83 +14,25 @@ const services = [
 ]
 
 const stats = [
-  {
-    n: '20+',
-    l: 'שנות ניסיון',
-    delay: '0s',
-    icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="18" cy="18" r="13" />
-        <polyline points="18,9 18,18 23,23" />
-        <circle cx="18" cy="18" r="1.5" fill="rgba(255,255,255,0.75)" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    n: '480+',
-    l: 'פרויקטים',
-    delay: '0.4s',
-    icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="5" y="5" width="11" height="11" rx="1" />
-        <rect x="20" y="5" width="11" height="11" rx="1" />
-        <rect x="5" y="20" width="11" height="11" rx="1" />
-        <rect x="20" y="20" width="11" height="11" rx="1" />
-      </svg>
-    ),
-  },
-  {
-    n: '0.1 מ"מ',
-    l: 'דיוק מרבי',
-    delay: '0.8s',
-    icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="6" y1="30" x2="30" y2="6" />
-        <polyline points="6,6 6,30 30,30" />
-        <circle cx="6" cy="30" r="2" fill="rgba(255,255,255,0.75)" stroke="none" />
-        <circle cx="30" cy="6" r="2" fill="rgba(255,255,255,0.75)" stroke="none" />
-        <line x1="12" y1="30" x2="12" y2="27" />
-        <line x1="18" y1="30" x2="18" y2="27" />
-        <line x1="24" y1="30" x2="24" y2="27" />
-        <line x1="6" y1="12" x2="9" y2="12" />
-        <line x1="6" y1="18" x2="9" y2="18" />
-        <line x1="6" y1="24" x2="9" y2="24" />
-      </svg>
-    ),
-  },
-  {
-    n: '∞',
-    l: 'ערבות',
-    delay: '1.2s',
-    icon: (
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 10 L22 6 L28 6 L30 12 L18 24 L6 24 L8 30 L14 30 L18 26" />
-        <path d="M18 10 L14 6 L8 6 L6 12 L18 24 L30 24 L28 30 L22 30 L18 26" />
-      </svg>
-    ),
-  },
+  { n: '20', unit: '+', l: 'שנות ניסיון' },
+  { n: '480', unit: '+', l: 'פרויקטים' },
+  { n: '0.1', unit: ' מ"מ', l: 'דיוק מרבי' },
+  { n: '100', unit: '%', l: 'ערבות לכל פרויקט' },
 ]
 
 export default function HomePage() {
   return (
     <>
       <style>{`
-        @keyframes floatIcon {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-8px); }
-        }
-        .stat-icon {
-          animation: floatIcon 3s ease-in-out infinite;
-        }
         .stat-card {
           transition: background 0.3s ease;
         }
         .stat-card:hover {
-          background: rgba(255,255,255,0.04) !important;
+          background: rgba(255,255,255,0.03) !important;
         }
         @media (max-width: 640px) {
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .stat-card { padding: 2rem 0.8rem !important; }
+          .stat-card { padding: 1.8rem 1rem !important; }
           .services-row { grid-template-columns: 1fr !important; }
         }
       `}</style>
@@ -145,9 +87,8 @@ export default function HomePage() {
           style={{
             position:'relative', zIndex:2,
             display:'grid', gridTemplateColumns:'repeat(4,1fr)',
-            background:'rgba(0,0,0,0.88)',
-            borderTop:'1px solid rgba(255,255,255,.08)',
-            backdropFilter:'blur(8px)',
+            background:'#000',
+            borderTop:'1px solid rgba(255,255,255,.1)',
           }}
         >
           {stats.map((s, i) => (
@@ -155,28 +96,49 @@ export default function HomePage() {
               key={i}
               className="stat-card"
               style={{
-                padding:'2.2rem 1rem',
-                borderLeft: i > 0 ? '1px solid rgba(255,255,255,.07)' : 'none',
-                display:'flex', flexDirection:'column', alignItems:'center', gap:'1rem',
-                background:'transparent',
+                padding:'2.4rem 2rem',
+                borderLeft: i > 0 ? '1px solid rgba(255,255,255,.08)' : 'none',
+                display:'flex',
+                flexDirection:'column',
+                alignItems:'center',
+                gap:'.6rem',
               }}
             >
-              {/* Floating icon */}
-              <div
-                className="stat-icon"
-                style={{ animationDelay: s.delay }}
-              >
-                {s.icon}
+              {/* Big number */}
+              <div style={{ display:'flex', alignItems:'baseline', gap:'.15rem' }}>
+                <span style={{
+                  fontSize:'clamp(2.4rem,4vw,3.8rem)',
+                  fontWeight:100,
+                  color:'#fff',
+                  lineHeight:1,
+                  letterSpacing:'-.04em',
+                  fontFamily:'var(--font-heebo)',
+                }}>
+                  {s.n}
+                </span>
+                <span style={{
+                  fontSize:'clamp(1rem,1.8vw,1.6rem)',
+                  fontWeight:300,
+                  color:'rgba(255,255,255,.5)',
+                  letterSpacing:'-.01em',
+                  fontFamily:'var(--font-heebo)',
+                }}>
+                  {s.unit}
+                </span>
               </div>
 
-              {/* Number + label */}
-              <div style={{ textAlign:'center' }}>
-                <div style={{ fontSize:'clamp(1.5rem,2.5vw,2.2rem)', fontWeight:200, color:'#fff', lineHeight:1, letterSpacing:'-.02em' }}>
-                  {s.n}
-                </div>
-                <div style={{ fontSize:'.52rem', letterSpacing:'.14em', color:'rgba(255,255,255,.3)', marginTop:'.5rem', fontFamily:'var(--font-heebo)' }}>
-                  {s.l}
-                </div>
+              {/* Thin divider */}
+              <div style={{ width:'24px', height:'1px', background:'rgba(255,255,255,.15)' }} />
+
+              {/* Label */}
+              <div style={{
+                fontSize:'.55rem',
+                letterSpacing:'.18em',
+                color:'rgba(255,255,255,.35)',
+                fontFamily:'var(--font-heebo)',
+                textAlign:'center',
+              }}>
+                {s.l}
               </div>
             </div>
           ))}
