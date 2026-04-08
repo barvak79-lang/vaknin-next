@@ -146,35 +146,50 @@ export default function HomePage() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section style={{ background:'#000', padding:'0' }}>
-        <div style={{ padding:'5rem 6vw 3rem', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
-          <div className="section-tag">
-            <span style={{ fontSize:'.55rem', letterSpacing:'.28em', color:'rgba(255,255,255,.3)' }}>מה אנחנו עושים</span>
-            <div style={{ width:'24px', height:'1px', background:'rgba(255,255,255,.2)' }} />
+      <section style={{ background:'#0a0a0a', padding:'6rem 6vw' }}>
+        {/* Header */}
+        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:'4rem', borderBottom:'1px solid rgba(255,255,255,.08)', paddingBottom:'2rem' }}>
+          <div>
+            <div style={{ fontSize:'.55rem', letterSpacing:'.3em', color:'rgba(255,255,255,.3)', marginBottom:'1rem' }}>— מה אנחנו עושים</div>
+            <h2 style={{ fontSize:'clamp(2.5rem,5vw,4.5rem)', fontWeight:900, color:'#fff', letterSpacing:'-.04em', lineHeight:.9, margin:0 }}>
+              השירותים<br />
+              <em style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,.35)', fontSize:'.85em' }}>שלנו</em>
+            </h2>
           </div>
-          <h2 style={{ fontSize:'clamp(2rem,5vw,4rem)', fontWeight:900, color:'#fff', letterSpacing:'-.03em', lineHeight:1 }}>
-            השירותים{' '}
-            <em style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontStyle:'italic', color:'rgba(255,255,255,.4)' }}>שלנו</em>
-          </h2>
+          <Link href="/contact" style={{ fontSize:'.65rem', letterSpacing:'.2em', color:'rgba(255,255,255,.4)', borderBottom:'1px solid rgba(255,255,255,.15)', paddingBottom:'4px', whiteSpace:'nowrap' }}>
+            לכל השירותים ←
+          </Link>
         </div>
 
-        {services.map((s, i) => (
-          <div
-            key={s.num}
-            className="services-row"
-            style={{ display:'grid', gridTemplateColumns:'1fr 1fr', minHeight:'360px', borderBottom:'1px solid rgba(255,255,255,.06)' }}
-          >
-            <div style={{ order: i % 2 === 0 ? 2 : 1, position:'relative', minHeight:'280px' }}>
-              <Image src={s.img} alt={s.title} fill style={{ objectFit:'cover' }} loading="lazy" sizes="50vw" />
-            </div>
-            <div style={{ order: i % 2 === 0 ? 1 : 2, padding:'3rem', display:'flex', flexDirection:'column', justifyContent:'center', background:'#111' }}>
-              <div style={{ fontSize:'.52rem', letterSpacing:'.28em', color:'rgba(255,255,255,.3)', marginBottom:'1rem' }}>{s.sub}</div>
-              <h3 style={{ fontSize:'clamp(1.8rem,3vw,2.5rem)', fontWeight:900, color:'#fff', letterSpacing:'-.03em', marginBottom:'1rem' }}>{s.title}</h3>
-              <p style={{ fontSize:'.85rem', fontWeight:300, color:'rgba(255,255,255,.45)', lineHeight:1.9, textAlign:'right', marginBottom:'2rem' }}>{s.desc}</p>
-              <Link href="/contact" style={{ alignSelf:'flex-end', fontSize:'.62rem', letterSpacing:'.2em', color:'rgba(255,255,255,.45)', borderBottom:'1px solid rgba(255,255,255,.18)', paddingBottom:'3px' }}>לפרויקט כזה ←</Link>
-            </div>
-          </div>
-        ))}
+        {/* Services list */}
+        <div style={{ display:'flex', flexDirection:'column' }}>
+          {services.map((s, i) => (
+            <Link key={s.num} href="/contact" style={{ textDecoration:'none' }}>
+              <div
+                style={{
+                  display:'grid',
+                  gridTemplateColumns:'3rem 1fr 140px 1fr 2rem',
+                  alignItems:'center',
+                  gap:'2rem',
+                  padding:'2.2rem 0',
+                  borderBottom:'1px solid rgba(255,255,255,.07)',
+                  cursor:'pointer',
+                  transition:'padding .25s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.paddingRight = '1rem' }}
+                onMouseLeave={e => { e.currentTarget.style.paddingRight = '0' }}
+              >
+                <span style={{ fontSize:'.52rem', letterSpacing:'.15em', color:'rgba(255,255,255,.2)' }}>{s.num}</span>
+                <h3 style={{ fontSize:'clamp(1.8rem,3vw,3.2rem)', fontWeight:800, color:'#fff', letterSpacing:'-.035em', margin:0, lineHeight:1 }}>{s.title}</h3>
+                <div style={{ position:'relative', height:'72px', borderRadius:'2px', overflow:'hidden' }}>
+                  <Image src={s.img} alt={s.title} fill style={{ objectFit:'cover' }} sizes="140px" loading="lazy" />
+                </div>
+                <span style={{ fontSize:'.58rem', letterSpacing:'.2em', color:'rgba(255,255,255,.22)', textAlign:'left' }}>{s.sub}</span>
+                <span style={{ fontSize:'1.1rem', color:'rgba(255,255,255,.2)' }}>←</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* ── CTA ── */}
