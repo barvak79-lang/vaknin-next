@@ -219,7 +219,7 @@ export default function HomePage() {
               <div
                 style={{
                   display:'grid',
-                  gridTemplateColumns:'3rem 1fr 280px 1fr 2rem',
+                  gridTemplateColumns:'3rem 1fr 420px 1fr 2rem',
                   alignItems:'center',
                   gap:'2.5rem',
                   padding:'1.2rem 0',
@@ -232,8 +232,8 @@ export default function HomePage() {
               >
                 <span style={{ fontSize:'.52rem', letterSpacing:'.15em', color:'rgba(255,255,255,.2)' }}>{s.num}</span>
                 <h3 style={{ fontSize:'clamp(1.8rem,3vw,3.2rem)', fontWeight:800, color:'#fff', letterSpacing:'-.035em', margin:0, lineHeight:1 }}>{s.title}</h3>
-                <div style={{ position:'relative', height:'160px', borderRadius:'3px', overflow:'hidden' }}>
-                  <Image src={s.img} alt={s.title} fill style={{ objectFit:'cover', transition:'transform .4s' }} sizes="280px" loading="lazy" />
+                <div style={{ position:'relative', height:'240px', borderRadius:'4px', overflow:'hidden' }}>
+                  <Image src={s.img} alt={s.title} fill style={{ objectFit:'cover', transition:'transform .4s' }} sizes="420px" loading="lazy" />
                 </div>
                 <span style={{ fontSize:'.58rem', letterSpacing:'.2em', color:'rgba(255,255,255,.22)', textAlign:'left' }}>{s.sub}</span>
                 <span style={{ fontSize:'1.1rem', color:'rgba(255,255,255,.2)' }}>←</span>
